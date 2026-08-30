@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background-color: theme('colors.signal.DEFAULT');
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.signal.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  body {
+    color: theme('colors.ink.900');
+  }
+
+  .dark body {
+    color: theme('colors.ink.50');
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs tracking-wide text-signal-dim dark:text-signal-bright;
+  }
+
+  .eyebrow::before {
+    content: '// ';
+    opacity: 0.6;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl md:text-4xl font-semibold tracking-tight text-ink-900 dark:text-paper;
+  }
+
+  .card-surface {
+    @apply rounded-xl border border-ink-100 bg-white/70 shadow-sm backdrop-blur-sm
+      dark:border-ink-700 dark:bg-ink-900/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ink-900 px-5 py-3
+      font-body text-sm font-semibold text-paper transition-all duration-200
+      hover:bg-signal-dim hover:-translate-y-0.5 active:translate-y-0
+      dark:bg-paper dark:text-ink-950 dark:hover:bg-signal-bright;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-200 px-5 py-3
+      font-body text-sm font-semibold text-ink-900 transition-all duration-200
+      hover:border-signal-dim hover:text-signal-dim hover:-translate-y-0.5 active:translate-y-0
+      dark:border-ink-600 dark:text-paper dark:hover:border-signal-bright dark:hover:text-signal-bright;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-2 font-mono text-xs
+      text-ink-500 transition-colors hover:text-signal-dim dark:text-ink-300 dark:hover:text-signal-bright;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(rgba(127, 127, 127, 0.18) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}

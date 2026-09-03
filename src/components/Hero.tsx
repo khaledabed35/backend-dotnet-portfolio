@@ -1,6 +1,5 @@
 import { profile } from '../data/profile';
 import { GithubIcon, LinkedinIcon, MailIcon } from './Icons';
-import Terminal from './Terminal';
 import { useReveal } from '../hooks/useReveal';
 
 export default function Hero() {
@@ -77,19 +76,23 @@ export default function Hero() {
           </div>
         </div>
 
-        <div ref={termRef} className="reveal" style={{ transitionDelay: '120ms' }}>
-          <Terminal
-            title="~/portfolio — zsh"
-            lines={[
-              { prompt: '$', text: 'whoami' },
-              { text: profile.name, color: 'signal' },
-              { prompt: '$', text: 'cat focus.json' },
-              { text: '{ "stack": "ASP.NET Core", "layer": "backend" }', color: 'muted' },
-              { prompt: '$', text: 'status --check' },
-              { text: '✓ build passing · ✓ tests green', color: 'signal' },
-            ]}
-          />
-        </div>
+      <div ref={termRef} className="reveal" style={{ transitionDelay: '120ms' }}>
+  <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-700 dark:border-gray-800 bg-gray-900">
+    {/* شريط علوي شكل النافذة */}
+    <div className="px-4 py-3 bg-gray-900/80 backdrop-blur flex items-center space-x-2 border-b border-gray-800">
+      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+    </div>
+
+    {/* صورتك الشخصية */}
+   <img 
+  src="/profile.jpeg" 
+  alt={profile.name} 
+  className="w-full h-[380px] object-cover object-center"
+/>
+  </div>
+</div>
       </div>
     </section>
   );
